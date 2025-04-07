@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Icon Generator</title>
+</head>
+<body>
+  <canvas id="canvas192" width="192" height="192"></canvas>
+  <canvas id="canvas512" width="512" height="512"></canvas>
+  <script>
+    // Function to draw our app icon
+    function drawIcon(ctx, size) {
+      // Background
+      ctx.fillStyle = '#4f46e5';
+      ctx.beginPath();
+      ctx.roundRect(0, 0, size, size, size * 0.15);
+      ctx.fill();
+      
+      // White circle
+      ctx.fillStyle = '#ffffff';
+      ctx.globalAlpha = 0.85;
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size * 0.35, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      
+      // Clock outline
+      ctx.strokeStyle = '#4f46e5';
+      ctx.lineWidth = size * 0.04;
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size * 0.3, 0, Math.PI * 2);
+      ctx.stroke();
+      
+      // Clock hands
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.beginPath();
+      ctx.moveTo(size/2, size/2);
+      ctx.lineTo(size/2, size/2 - size * 0.15);
+      ctx.stroke();
+      
+      ctx.beginPath();
+      ctx.moveTo(size/2, size/2);
+      ctx.lineTo(size/2 + size * 0.15, size/2 + size * 0.15);
+      ctx.stroke();
+    }
+    
+    // Draw 192x192 icon
+    const ctx192 = document.getElementById('canvas192').getContext('2d');
+    drawIcon(ctx192, 192);
+    
+    // Draw 512x512 icon
+    const ctx512 = document.getElementById('canvas512').getContext('2d');
+    drawIcon(ctx512, 512);
+    
+    // Output the image data URLs
+    console.log('192x192:', document.getElementById('canvas192').toDataURL());
+    console.log('512x512:', document.getElementById('canvas512').toDataURL());
+  </script>
+</body>
+</html>
